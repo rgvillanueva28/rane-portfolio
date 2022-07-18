@@ -7,10 +7,10 @@ interface Props {
 
 function Layout({ children }: Props) {
   return (
-    <div className="flex flex-row bg-sky-100  text-black min-h-screen">
+    <div className="flex flex-row bg-sky-100  text-sky-900 min-h-screen">
       {/* dark:text-white dark:bg-sky-900 */}
       <NavBar />
-      <main className="min-h-screen max-h-screen">
+      <main className="min-h-screen max-h-screen w-full bg-pattern">
         {children}
       </main>
     </div>
