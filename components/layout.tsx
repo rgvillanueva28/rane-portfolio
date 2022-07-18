@@ -7,8 +7,8 @@ interface Props {
 
 function Layout({ children }: Props) {
   return (
-    <div className="flex flex-row bg-cyan-100  text-black min-h-screen">
-      {/* dark:text-white dark:bg-cyan-900 */}
+    <div className="flex flex-row bg-sky-100  text-black min-h-screen">
+      {/* dark:text-white dark:bg-sky-900 */}
       <NavBar />
       <main className="min-h-screen max-h-screen">
         {children}

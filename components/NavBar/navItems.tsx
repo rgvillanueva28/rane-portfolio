@@ -16,7 +16,7 @@ function NavItems({ navigationItems }: NavItemProps) {
         <Link href={item.link} key={index}>
           <a
             key={index}
-            className="py-2 w-full cursor-pointer text-center border-2 border-cyan-200 hover:bg-teal-400 hover:border-black hover:font-bold"
+            className="py-2 w-full cursor-pointer text-center border-2 border-sky-200 hover:bg-sky-400 hover:border-black hover:font-bold"
           >
             {item.name}
           </a>
