@@ -19,7 +19,7 @@ function NavFooterLinks({ navigationLinks }: NavFooterLinksProps) {
           <a
             href={item.link}
             key={index}
-            className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-400 "
+            className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-400"
             target="_blank"
             rel="noreferrer"
             id={item.name}
