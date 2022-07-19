@@ -1,38 +1,15 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
-import Image from "next/future/image";
-import { LayoutContext } from "../context/layoutContext";
-import { MdSchool, MdMail } from "react-icons/md";
-import { FaBuilding, FaRegCalendar } from "react-icons/fa";
+import { LayoutContext } from "../../context/layoutContext";
 
 import { useTheme } from "next-themes";
 
 import { useContext } from "react";
+import { GetStaticProps } from "next";
 
-const aboutItems = [
-  {
-    id: 0,
-    icon: MdSchool,
-    name: "B.S. Computer Engineering",
-  },
-  {
-    id: 1,
-    icon: FaBuilding,
-    name: "Mapúa University",
-  },
-  {
-    id: 2,
-    icon: FaRegCalendar,
-    name: "2018 - present",
-  },
-  {
-    id: 3,
-    icon: MdMail,
-    name: "rgvillanueva28@gmail.com",
-  },
-];
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function about() {
+function Portfolio({ portfolioItems }: any) {
   const { theme, setTheme } = useTheme();
   const { showNavBar } = useContext(LayoutContext);
 
@@ -106,7 +83,7 @@ function about() {
     },
   };
 
-  const aboutMe = Array.from("About Me");
+  const myPortfolio = Array.from("My Portfolio");
 
   return (
     <>
@@ -120,8 +97,8 @@ function about() {
           variants={motionRaneV}
           className="flex select-none mb-5"
         >
-          {aboutMe.map((aboutMe, index) =>
-            aboutMe === " " ? (
+          {myPortfolio.map((myPortfolio, index) =>
+            myPortfolio === " " ? (
               <div key={index} className="w-5"></div>
             ) : (
               <motion.strong
@@ -132,7 +109,7 @@ function about() {
                 animate="animate"
                 className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-sky-400"
               >
-                {aboutMe}
+                {myPortfolio}
               </motion.strong>
             )
           )}
@@ -144,11 +121,14 @@ function about() {
           animate="visible"
           variants={motionDiv}
         >
-          {aboutItems.map((item, index) => {
+          {portfolioItems?.map((item: any, index: any) => {
             return (
-              <motion.li key={index} className="cursor-pointer hover:text-sky-500" variants={motionP}>
-                <item.icon className="inline mr-1 my-auto" />
-                {item.name}
+              <motion.li
+                key={index}
+                className="cursor-pointer hover:text-sky-500"
+                variants={motionP}
+              >
+                {item.attributes.title}
               </motion.li>
             );
           })}
@@ -158,4 +138,21 @@ function about() {
   );
 }
 
-export default about;
+export default Portfolio;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  let portfolioItems: any | undefined = await fetch(
+    `${API_URL}/api/portfolios?populate=%2A`
+  );
+  portfolioItems = await portfolioItems.json();
+  portfolioItems = portfolioItems?.data;
+
+  //   console.log(portfolioItems);
+
+  return {
+    props: {
+      portfolioItems,
+    },
+    revalidate: 60,
+  };
+};
