@@ -1,11 +1,14 @@
-import type { NextPage } from "next";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import Image from "next/future/image";
 
+import { useTheme } from "next-themes";
+
 import logo from "../public/logo.png";
 
-const Home: NextPage = () => {
+function Home() {
+  const { theme, setTheme } = useTheme();
+
   const motionDiv = {
     active: {
       opacity: 1,
@@ -68,6 +71,9 @@ const Home: NextPage = () => {
     whileTap: {
       y: 0,
     },
+    animate: {
+      color: theme === "light" ? "#0c4a6e" : "#e0f2fe",
+    },
   };
 
   const motionButtons = {
@@ -125,7 +131,8 @@ const Home: NextPage = () => {
                   variants={motionLetters}
                   whileHover="whileHover"
                   whileTap="whileTap"
-                  className="cursor-pointer text-6xl text-left font-bold"
+                  animate="animate"
+                  className="cursor-pointer text-6xl text-left font-bold text-sky-900 dark:text-sky-100"
                 >
                   {rgv}
                 </motion.div>
@@ -147,7 +154,7 @@ const Home: NextPage = () => {
             animate="active"
             whileHover="whileHover"
             variants={motionButtons}
-            className="text-left px-6 h-12 bg-sky-100 border-2 border-sky-200 mr-auto mt-2 font-semibold hover:bg-sky-400 hover:border-sky-900"
+            className="text-left px-6 h-12 bg-sky-100 dark:bg-sky-900 border-2 border-sky-200 dark:border-sky-800 mr-auto mt-2 font-semibold hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100"
           >
             CONTACT ME
           </motion.button>
@@ -155,6 +162,6 @@ const Home: NextPage = () => {
       </div>
     </>
   );
-};
+}
 
 export default Home;

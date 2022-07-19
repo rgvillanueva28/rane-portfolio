@@ -2,9 +2,13 @@ import Image from "next/future/image";
 import Link from "next/link";
 import logo from "../../public/logo.png";
 import NavItems from "./navItems";
+import { LayoutContext } from "../../context/layoutContext";
+import { motion } from "framer-motion";
 
 import { TbBrandGithub, TbBrandGmail, TbBrandLinkedin } from "react-icons/tb";
 import NavFooterLinks from "./navFooterLinks";
+import { useContext } from "react";
+import NavDarkModeSwitch from "./navDarkModeSwitch";
 
 const navigationItems = [
   {
@@ -43,12 +47,31 @@ const navigationLinks = [
   },
 ];
 
+const motionDiv = {
+  initial: {
+    x: -500,
+  },
+  animate: {
+    x: 0,
+    transition: {
+      ease: "anticipate",
+    },
+  },
+};
+
 function NavBar() {
+  const layoutContext = useContext(LayoutContext);
+
   return (
-    <div className="bg-sky-200 w-48 flex flex-col justify-between">
+    <motion.div
+      variants={motionDiv}
+      initial="initial"
+      animate="animate"
+      className="bg-sky-200 dark:bg-sky-800 w-48 flex flex-col justify-between"
+    >
       <div className="basis-1/3 " id="">
         <Link href="/">
-          <a className=" flex flex-col bg-sky-400 border-y-2 border-sky-400 hover:border-sky-900 font-semibold hover:font-bold">
+          <a className=" flex flex-col bg-sky-400 dark:bg-sky-700 border-y-2 border-sky-400 dark:border-sky-800 hover:border-sky-900 dark:hover:border-sky-100 font-semibold hover:font-bold">
             <Image src={logo} alt="Logo" className="logo" />
             <h1 className="text-lg text-center">RANE VILLANUEVA</h1>
           </a>
@@ -59,9 +82,10 @@ function NavBar() {
         <NavItems navigationItems={navigationItems} />
       </div>
       <div className="basis-1/3 flex flex-col justify-end">
+        <NavDarkModeSwitch />
         <NavFooterLinks navigationLinks={navigationLinks} />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
