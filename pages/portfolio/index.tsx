@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 
 import { useContext } from "react";
 import { GetStaticProps } from "next";
+import PortfolioItem from "../../components/Portfolio/portfolioItem";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -15,34 +16,28 @@ function Portfolio({ portfolioItems }: any) {
 
   const motionDiv = {
     hidden: {
-      opacity: 0,
-      //   y: 20,
+      opacity: 1,
     },
     visible: {
       opacity: 1,
-      //   y: 0,
       transition: {
         delay: 1,
-        // type: "spring",
-        // stiffness: 500,
         duration: 2,
-        staggerChildren: 0.25,
-        // when: "beforeChildren",
+        staggerChildren: 0.2,
       },
     },
   };
 
   const motionP = {
     hidden: {
-      //   opacity: 0,
+      opacity: 0,
       x: 30,
     },
     visible: {
-      //   opacity: 1,
+      opacity: 1,
       x: 0,
       transition: {
-        // delay: 1,
-        duration: 2,
+        duration: 1,
       },
     },
   };
@@ -52,7 +47,7 @@ function Portfolio({ portfolioItems }: any) {
       opacity: 1,
       x: 0,
       transition: {
-        delay: 0.5,
+        delay: 0,
         type: "spring",
         stiffness: 1000,
       },
@@ -90,7 +85,7 @@ function Portfolio({ portfolioItems }: any) {
       <Head>
         <title>Rane Villanueva</title>
       </Head>
-      <div className="container m-auto px-10 w-full flex flex-col">
+      <div className=" py-5 px-10 w-full h-full flex flex-col overflow-y-auto">
         <motion.div
           initial="inactive"
           animate="active"
@@ -116,20 +111,23 @@ function Portfolio({ portfolioItems }: any) {
         </motion.div>
 
         <motion.ul
-          className="w-full space-y-2"
+          className="flex flex-row flex-wrap mx-auto"
           initial="hidden"
           animate="visible"
           variants={motionDiv}
         >
           {portfolioItems?.map((item: any, index: any) => {
             return (
-              <motion.li
+              <PortfolioItem
                 key={index}
-                className="cursor-pointer hover:text-sky-500"
+                slug={item.attributes.slug}
+                title={item.attributes.title}
+                description={item.attributes.description}
+                ghLink={item.attributes.github}
+                link={item.attributes.link}
+                tags={item.attributes.portfolio_techs}
                 variants={motionP}
-              >
-                {item.attributes.title}
-              </motion.li>
+              />
             );
           })}
         </motion.ul>

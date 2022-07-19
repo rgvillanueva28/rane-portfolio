@@ -38,34 +38,28 @@ function about() {
 
   const motionDiv = {
     hidden: {
-      opacity: 0,
-      //   y: 20,
+      opacity: 1,
     },
     visible: {
       opacity: 1,
-      //   y: 0,
       transition: {
         delay: 1,
-        // type: "spring",
-        // stiffness: 500,
         duration: 2,
-        staggerChildren: 0.25,
-        // when: "beforeChildren",
+        staggerChildren: 0.2,
       },
     },
   };
 
   const motionP = {
     hidden: {
-      //   opacity: 0,
+      opacity: 0,
       x: 30,
     },
     visible: {
-      //   opacity: 1,
+      opacity: 1,
       x: 0,
       transition: {
-        // delay: 1,
-        duration: 2,
+        duration: 1,
       },
     },
   };
@@ -75,7 +69,7 @@ function about() {
       opacity: 1,
       x: 0,
       transition: {
-        delay: 0.5,
+        delay: 0,
         type: "spring",
         stiffness: 1000,
       },
@@ -146,7 +140,11 @@ function about() {
         >
           {aboutItems.map((item, index) => {
             return (
-              <motion.li key={index} className="cursor-pointer hover:text-sky-500" variants={motionP}>
+              <motion.li
+                key={index}
+                className="cursor-pointer hover:text-sky-500"
+                variants={motionP}
+              >
                 <item.icon className="inline mr-1 my-auto" />
                 {item.name}
               </motion.li>
