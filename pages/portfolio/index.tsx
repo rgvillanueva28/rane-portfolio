@@ -31,11 +31,11 @@ function Portfolio({ portfolioItems }: any) {
   const motionP = {
     hidden: {
       opacity: 0,
-      x: 30,
+      y: 30,
     },
     visible: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
         duration: 1,
       },
@@ -45,14 +45,14 @@ function Portfolio({ portfolioItems }: any) {
   const motionRaneV = {
     active: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
         delay: 0,
         type: "spring",
         stiffness: 1000,
       },
     },
-    inactive: { opacity: 0, x: 100 },
+    inactive: { opacity: 0, y: 100 },
   };
 
   const motionLetters = {

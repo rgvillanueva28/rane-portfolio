@@ -26,7 +26,7 @@ function PortfolioItem({
       variants={variants}
       className="flex flex-wrap w-full px-4 py-4 md:w-1/2 xl:w-1/3 2xl:w-1/4 "
     >
-      <div className="flex flex-col items-stretch w-full min-h-full bg-sky-200 dark:bg-sky-800 p-6 hover:scale-105 transition-all duration-100">
+      <div className=" flex flex-col items-stretch w-full min-h-full  p-6 border-4 bg-sky-100 dark:bg-sky-900 border-sky-200 dark:border-sky-800  hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100">
         <h4 className="text-xl mb-4">{title}</h4>
         <p className="text-sky-700 dark:text-sky-300 mb-10">{description}</p>
         <div className="text-sky-700 dark:text-sky-300 text-sm mb-4">
@@ -45,9 +45,11 @@ function PortfolioItem({
               href={ghLink}
               target="_blank"
               rel="noreferrer noopener"
-              className="hover:text-sky-500"
+              className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-sky-800"
             >
-              <FaGithub size={28} />
+              <div className="absolute z-10 group-hover:bg-sky-900 p-1 group-hover:text-sky-100 dark:group-hover:bg-sky-100 dark:group-hover:text-sky-900">
+                <FaGithub size={28} />
+              </div>
             </a>
           ) : null}
           {link ? (
@@ -55,9 +57,11 @@ function PortfolioItem({
               href={link}
               target="_blank"
               rel="noreferrer noopener"
-              className="hover:text-sky-500"
+              className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-sky-800"
             >
-              <FaExternalLinkAlt size={28} />
+              <div className="absolute z-10 group-hover:bg-sky-900 p-1 group-hover:text-sky-100 dark:group-hover:bg-sky-100 dark:group-hover:text-sky-900">
+                <FaExternalLinkAlt size={28} />
+              </div>
             </a>
           ) : null}
         </div>
