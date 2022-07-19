@@ -1,13 +1,16 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
 import Image from "next/future/image";
+import { LayoutContext } from "../context/layoutContext";
 
 import { useTheme } from "next-themes";
 
 import logo from "../public/logo.png";
+import { useContext } from "react";
 
 function Home() {
   const { theme, setTheme } = useTheme();
+  const { showNavBar } = useContext(LayoutContext);
 
   const motionDiv = {
     active: {
@@ -56,7 +59,7 @@ function Home() {
   const motionLetters = {
     whileHover: {
       y: -10,
-      color: "#3b82f6",
+      color: theme === "light" ? "#38bdf8" : "#0284c7",
       transition: {
         y: {
           type: "spring",
@@ -72,7 +75,7 @@ function Home() {
       y: 0,
     },
     animate: {
-      color: theme === "light" ? "#0c4a6e" : "#e0f2fe",
+      color: theme === "light" ? "#0284c7" : "#38bdf8",
     },
   };
 
@@ -103,19 +106,26 @@ function Home() {
       <Head>
         <title>Rane Villanueva</title>
       </Head>
-      <div className="container m-auto my-auto px-10 w-full flex flex-row items-center space-x-10">
+      <div className="container m-auto px-10 w-full flex flex-col lg:flex-row items-center lg:space-x-10">
         <motion.div
           initial="inactive"
           animate="active"
           whileHover="whileHover"
           whileTap="whileTap"
           variants={motionImage}
-          className="flex cursor-pointer"
+          className="flex cursor-pointer max-w-xs lg:basis-1/3 mb-5 lg:mb-0"
         >
-          <Image src={logo} alt="Logo" className=""></Image>
+          <Image src={logo} alt="Logo" className="select-none "></Image>
         </motion.div>
-        <motion.div initial="inactive" animate="active" variants={motionDiv}>
-          <div className="font-semibold text-lg">Hi there! I am</div>
+        <motion.div
+          className="lg:basis-2/3"
+          initial="inactive"
+          animate="active"
+          variants={motionDiv}
+        >
+          <div className="font-semibold text-sm sm:text-base">
+            Hi there! I am
+          </div>
           <motion.div
             initial="inactive"
             animate="active"
@@ -126,23 +136,23 @@ function Home() {
               rgv === " " ? (
                 <div key={index} className="w-5"></div>
               ) : (
-                <motion.div
+                <motion.strong
                   key={index}
                   variants={motionLetters}
                   whileHover="whileHover"
                   whileTap="whileTap"
                   animate="animate"
-                  className="cursor-pointer text-6xl text-left font-bold text-sky-900 dark:text-sky-100"
+                  className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-sky-400"
                 >
                   {rgv}
-                </motion.div>
+                </motion.strong>
               )
             )}
           </motion.div>
-          <div className="gradient-text text-5xl font-bold py-2">
+          <div className="gradient-text text-3xl lg:text-4xl xl:text-5xl font-bold py-2">
             Aspiring Developer.
           </div>
-          <div className="text-lg text-justify">
+          <div className="text-sm sm:text-base text-justify">
             I am currently a Bachelor of Science in Computer Engineering student
             at Mapúa University. I am interested to learn the fields of
             Cybersecurity, Web Development, Mobile Development, Data Analysis
@@ -151,7 +161,7 @@ function Home() {
             about these projects.
           </div>
           <motion.button
-            animate="active"
+            animate={!showNavBar ? "active" : ""}
             whileHover="whileHover"
             variants={motionButtons}
             className="text-left px-6 h-12 bg-sky-100 dark:bg-sky-900 border-2 border-sky-200 dark:border-sky-800 mr-auto mt-2 font-semibold hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100"
