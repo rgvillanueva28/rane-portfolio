@@ -90,7 +90,7 @@ function NavBar() {
           initial="initial"
           animate="animate"
           exit="exit"
-          className={`absolute lg:relative z-0 flex flex-col w-full lg:w-72  bg-sky-200 dark:bg-sky-800 justify-between max-h-screen ${
+          className={`absolute lg:relative z-40 flex flex-col w-full lg:w-72  bg-sky-200 dark:bg-sky-800 justify-between max-h-screen ${
             isMobileSize ? " min-h-screen" : ""
           }`}
         >

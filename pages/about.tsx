@@ -1,14 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
 import { motion } from "framer-motion";
-import Image from "next/future/image";
-import { LayoutContext } from "../context/layoutContext";
 import { MdSchool, MdMail } from "react-icons/md";
 import { FaBuilding, FaRegCalendar } from "react-icons/fa";
 
 import { useTheme } from "next-themes";
-
-import { useContext } from "react";
 
 const aboutItems = [
   {
@@ -35,9 +31,8 @@ const aboutItems = [
 
 function about() {
   const { theme, setTheme } = useTheme();
-  const { showNavBar } = useContext(LayoutContext);
 
-  const motionDiv = {
+  const motionUl = {
     hidden: {
       opacity: 1,
     },
@@ -45,13 +40,12 @@ function about() {
       opacity: 1,
       transition: {
         delay: 1,
-        duration: 2,
-        staggerChildren: 0.2,
+        staggerChildren: 0.25,
       },
     },
   };
 
-  const motionP = {
+  const motionLi = {
     hidden: {
       opacity: 0,
       x: 30,
@@ -60,7 +54,7 @@ function about() {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 1,
+        duration: 0.25,
       },
     },
   };
@@ -137,14 +131,14 @@ function about() {
           className="w-full space-y-2"
           initial="hidden"
           animate="visible"
-          variants={motionDiv}
+          variants={motionUl}
         >
           {aboutItems.map((item, index) => {
             return (
               <motion.li
                 key={index}
                 className="cursor-pointer hover:text-sky-500"
-                variants={motionP}
+                variants={motionLi}
               >
                 <item.icon className="inline mr-1 my-auto" />
                 {item.name}

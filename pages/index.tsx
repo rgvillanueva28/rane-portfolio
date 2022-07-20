@@ -13,7 +13,6 @@ function Home() {
   const { showNavBar } = useContext(LayoutContext);
 
   const motionDiv = [...Array(5)].map((item, index) => {
-    console.log(index);
     return {
       active: {
         opacity: 1,
