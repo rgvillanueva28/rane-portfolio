@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Head from "next/head";
 import { motion } from "framer-motion";
 import Image from "next/future/image";

@@ -12,26 +12,29 @@ function Home() {
   const { theme, setTheme } = useTheme();
   const { showNavBar } = useContext(LayoutContext);
 
-  const motionDiv = {
-    active: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.5,
-        type: "spring",
-        stiffness: 500,
+  const motionDiv = [...Array(5)].map((item, index) => {
+    console.log(index);
+    return {
+      active: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 0.5 * index,
+          type: "spring",
+          stiffness: 500,
+        },
       },
-    },
-    inactive: { opacity: 0, y: -50 },
-  };
+      inactive: { opacity: 0, y: -50 },
+    };
+  });
 
   const motionImage = {
     active: {
       opacity: 1,
       transition: {
-        delay: 1.5,
+        delay: 0.5,
         type: "easeInOut",
-        duration: 1,
+        duration: 0.5,
       },
     },
     inactive: { opacity: 0 },
@@ -48,9 +51,10 @@ function Home() {
       opacity: 1,
       x: 0,
       transition: {
-        delay: 1,
+        delay: 0.5,
         type: "spring",
         stiffness: 1000,
+        duration: 0.5,
       },
     },
     inactive: { opacity: 0, x: 100 },
@@ -81,14 +85,24 @@ function Home() {
 
   const motionButtons = {
     active: {
+      opacity: 1,
       y: [0, -10, 0],
       transition: {
-        duration: 1,
-        ease: "easeInOut",
-        times: [0, 0.5, 1],
-        loop: Infinity,
-        repeatDelay: 0.2,
+        opacity: {
+          delay: 2,
+          duration: 0.25,
+        },
+        y: {
+          duration: 1,
+          ease: "easeInOut",
+          times: [0, 0.5, 1],
+          loop: Infinity,
+          repeatDelay: 0.2,
+        },
       },
+    },
+    inactive: {
+      opacity: 0,
     },
     whileHover: {
       y: 0,
@@ -117,15 +131,15 @@ function Home() {
         >
           <Image src={logo} alt="Logo" className="select-none "></Image>
         </motion.div>
-        <motion.div
-          className="lg:basis-2/3"
-          initial="inactive"
-          animate="active"
-          variants={motionDiv}
-        >
-          <div className="font-semibold text-sm sm:text-base">
+        <div className="lg:basis-2/3">
+          <motion.div
+            initial="inactive"
+            animate="active"
+            variants={motionDiv[0]}
+            className="font-semibold text-sm sm:text-base"
+          >
             Hi there! I am
-          </div>
+          </motion.div>
           <motion.div
             initial="inactive"
             animate="active"
@@ -149,18 +163,29 @@ function Home() {
               )
             )}
           </motion.div>
-          <div className="gradient-text text-3xl lg:text-4xl xl:text-5xl font-bold py-2">
+          <motion.div
+            initial="inactive"
+            animate="active"
+            variants={motionDiv[2]}
+            className="gradient-text text-3xl lg:text-4xl xl:text-5xl font-bold py-2"
+          >
             Aspiring Developer.
-          </div>
-          <div className="text-sm sm:text-base text-justify">
+          </motion.div>
+          <motion.div
+            initial="inactive"
+            animate="active"
+            variants={motionDiv[3]}
+            className="text-sm sm:text-base text-justify"
+          >
             I am currently a Bachelor of Science in Computer Engineering student
             at Mapúa University. I am interested to learn the fields of
             Cybersecurity, Web Development, Mobile Development, Data Analysis
             and Visualization, and Artificial Intelligence. I have also created
             several projects. Check out the portfolio tab for more information
             about these projects.
-          </div>
+          </motion.div>
           <motion.button
+            initial="inactive"
             animate={!showNavBar ? "active" : ""}
             whileHover="whileHover"
             variants={motionButtons}
@@ -168,7 +193,7 @@ function Home() {
           >
             CONTACT ME
           </motion.button>
-        </motion.div>
+        </div>
       </div>
     </>
   );
