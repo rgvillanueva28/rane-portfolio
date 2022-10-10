@@ -213,6 +213,7 @@ function Contact() {
             </motion.div>
 
             <motion.button
+              aria-label="Send email"
               variants={motionInput}
               key="button"
               type="submit"

@@ -97,6 +97,7 @@ function NavBar() {
           <header className="basis-1/3 " id="">
             <Link href="/">
               <a
+                aria-label="Go to Homepage"
                 className=" flex flex-col bg-sky-400 dark:bg-sky-700 border-y-2 border-sky-400 dark:border-sky-800 hover:border-sky-900 dark:hover:border-sky-100 font-semibold hover:font-bold"
                 onClick={() => setShowNavBar(false)}
               >

@@ -32,9 +32,9 @@ function Home() {
     active: {
       opacity: 1,
       transition: {
-        delay: 0.5,
+        delay: 0,
         type: "easeInOut",
-        duration: 0.5,
+        duration: 0.2,
       },
     },
     inactive: { opacity: 0 },
@@ -183,7 +183,10 @@ function Home() {
             and Visualization, and Artificial Intelligence. I have also created
             several projects. Check out the{" "}
             <Link href="/portfolio">
-              <a className="underline text-sky-500 hover:text-sky-400">
+              <a
+                className="underline text-sky-500 hover:text-sky-400"
+                aria-label={`Go to Portfolio`}
+              >
                 portfolio
               </a>
             </Link>{" "}
@@ -191,6 +194,7 @@ function Home() {
           </motion.p>
           <Link href="/contact" passHref>
             <motion.button
+              aria-label="Contact"
               initial="inactive"
               animate={!showNavBar ? "active" : ""}
               whileHover="whileHover"

@@ -21,6 +21,7 @@ function NavBarMobile() {
   return (
     <div className="absolute top-3 right-3 z-50">
       <button
+        aria-label="Show Nav Bar"
         className={`mx-auto mb-2 flex text-2xl font-semibold p-1 m-1 bg-sky-100 dark:bg-sky-900 border-2 border-sky-200 dark:border-sky-800 hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100`}
         onClick={() => setShowNavBar(!showNavBar)}
       >

@@ -27,6 +27,7 @@ function NavDarkModeSwitch() {
   return (
     <div>
       <motion.button
+        aria-label="Toggle Dark Mode"
         variants={motionButton}
         initial={theme === "dark" ? "light" : "dark"}
         exit={theme === "dark" ? "light" : "dark"}

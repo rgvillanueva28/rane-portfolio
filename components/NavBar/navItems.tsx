@@ -18,6 +18,7 @@ function NavItems({ navigationItems }: NavItemProps) {
       {navigationItems.map((item, index) => (
         <Link href={item.link} key={index}>
           <a
+            aria-label={`Go to ${item.name} Link`}
             key={index}
             className="py-2 w-full cursor-pointer text-center border-y-2 border-sky-200 hover:bg-sky-400 hover:border-sky-900 dark:border-sky-800 dark:hover:bg-sky-600 dark:hover:border-sky-100 font-semibold"
             onClick={() => setShowNavBar(false)}
