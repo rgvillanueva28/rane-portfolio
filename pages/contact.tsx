@@ -99,8 +99,8 @@ function Contact() {
       <Head>
         <title>Rane Villanueva</title>
       </Head>
-      <div className="px-10 w-full flex flex-col overflow-y-auto overflow-x-hidden">
-        <motion.div
+      <section className="px-10 w-full flex flex-col overflow-y-auto overflow-x-hidden">
+        <motion.h2
           initial="inactive"
           animate="active"
           variants={motionRaneV}
@@ -122,105 +122,107 @@ function Contact() {
               </motion.strong>
             )
           )}
-        </motion.div>
-        <div className="w-full lg:w-1/2 2xl:w-1/3 ">
-          <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <motion.div initial="hidden" animate="visible" variants={motionDiv}>
-              <motion.div
-                variants={motionInput}
-                key="name"
-                className="relative z-0 mb-4"
-              >
-                <input
-                  {...register("name", {
-                    required: true,
-                  })}
-                  className="peer block w-full appearance-none border-0 border-b-2 border-sky-900 dark:border-sky-100 bg-transparent py-2.5 px-0 text-sm text-sky-900 dark:text-sky-100 focus:border-sky-600  focus:dark:border-sky-400 focus:text-sky-600 focus:dark:text-sky-400 outline-none focus:ring-0 animate-color duration-200"
-                  type="text"
-                  placeholder=" "
-                />
-                <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-sky-900 dark:text-sky-100 duration-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-sky-700 dark:peer-focus:text-sky-300">
-                  Name
-                </label>
-                {errors?.name?.type === "required" && (
-                  <div className="text-red-500 text-sm">required</div>
-                )}
-              </motion.div>
-              <motion.div
-                variants={motionInput}
-                key="email"
-                className="relative z-0  mb-4"
-              >
-                <input
-                  {...register("email", {
-                    required: true,
-                    pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  })}
-                  className="peer block w-full appearance-none border-0 border-b-2 border-sky-900 dark:border-sky-100 bg-transparent py-2.5 px-0 text-sm text-sky-900 dark:text-sky-100 focus:border-sky-600  focus:dark:border-sky-400 focus:text-sky-600 focus:dark:text-sky-400 outline-none focus:ring-0 animate-color duration-200"
-                  type="email"
-                  placeholder=" "
-                />
-                <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-sky-900 dark:text-sky-100 duration-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-sky-700 dark:peer-focus:text-sky-300">
-                  Email
-                </label>
-                {errors?.email?.type === "required" && (
-                  <div className="text-red-500 text-sm">required</div>
-                )}
-                {errors?.email?.type === "pattern" && (
-                  <div className="text-red-500 text-sm">
-                    email address not valid
-                  </div>
-                )}
-              </motion.div>
-              <motion.div
-                variants={motionInput}
-                key="subject"
-                className="relative z-0  mb-4"
-              >
-                <input
-                  {...register("subject", { required: true })}
-                  className="peer block w-full appearance-none border-0 border-b-2 border-sky-900 dark:border-sky-100 bg-transparent py-2.5 px-0 text-sm text-sky-900 dark:text-sky-100 focus:border-sky-600  focus:dark:border-sky-400 focus:text-sky-600 focus:dark:text-sky-400 outline-none focus:ring-0 animate-color duration-200"
-                  type="text"
-                  placeholder=" "
-                />
-                <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-sky-900 dark:text-sky-100 duration-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-sky-700 dark:peer-focus:text-sky-300">
-                  Subject
-                </label>
-                {errors?.subject?.type === "required" && (
-                  <div className="text-red-500 text-sm">required</div>
-                )}
-              </motion.div>
-              <motion.div
-                variants={motionInput}
-                key="message"
-                className="relative z-0  mb-4"
-              >
-                <textarea
-                  {...register("message", { required: true })}
-                  rows={5}
-                  className="peer block w-full appearance-none border-0 border-b-2 border-sky-900 dark:border-sky-100 bg-transparent py-2.5 px-0 text-sm text-sky-900 dark:text-sky-100 focus:border-sky-600  focus:dark:border-sky-400 focus:text-sky-600 focus:dark:text-sky-400 outline-none focus:ring-0 animate-color duration-200"
-                  placeholder=" "
-                />
-                <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-sky-900 dark:text-sky-100 duration-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-sky-700 dark:peer-focus:text-sky-300">
-                  Message
-                </label>
-                {errors?.message?.type === "required" && (
-                  <div className="text-red-500 text-sm">required</div>
-                )}
-              </motion.div>
-
-              <motion.button
-                variants={motionInput}
-                key="button"
-                type="submit"
-                className="text-left px-6 h-12 bg-sky-100 dark:bg-sky-900 border-2 border-sky-200 dark:border-sky-800 mr-auto mt-2 font-semibold hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100"
-              >
-                Submit
-              </motion.button>
+        </motion.h2>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          className="w-full lg:w-1/2 2xl:w-1/3 "
+        >
+          <motion.div initial="hidden" animate="visible" variants={motionDiv}>
+            <motion.div
+              variants={motionInput}
+              key="name"
+              className="relative z-0 mb-4"
+            >
+              <input
+                {...register("name", {
+                  required: true,
+                })}
+                className="peer block w-full appearance-none border-0 border-b-2 border-sky-900 dark:border-sky-100 bg-transparent py-2.5 px-0 text-sm text-sky-900 dark:text-sky-100 focus:border-sky-600  focus:dark:border-sky-400 focus:text-sky-600 focus:dark:text-sky-400 outline-none focus:ring-0 animate-color duration-200"
+                type="text"
+                placeholder=" "
+              />
+              <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-sky-900 dark:text-sky-100 duration-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-sky-700 dark:peer-focus:text-sky-300">
+                Name
+              </label>
+              {errors?.name?.type === "required" && (
+                <div className="text-red-500 text-sm">required</div>
+              )}
             </motion.div>
-          </form>
-        </div>
-      </div>
+            <motion.div
+              variants={motionInput}
+              key="email"
+              className="relative z-0  mb-4"
+            >
+              <input
+                {...register("email", {
+                  required: true,
+                  pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                })}
+                className="peer block w-full appearance-none border-0 border-b-2 border-sky-900 dark:border-sky-100 bg-transparent py-2.5 px-0 text-sm text-sky-900 dark:text-sky-100 focus:border-sky-600  focus:dark:border-sky-400 focus:text-sky-600 focus:dark:text-sky-400 outline-none focus:ring-0 animate-color duration-200"
+                type="email"
+                placeholder=" "
+              />
+              <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-sky-900 dark:text-sky-100 duration-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-sky-700 dark:peer-focus:text-sky-300">
+                Email
+              </label>
+              {errors?.email?.type === "required" && (
+                <div className="text-red-500 text-sm">required</div>
+              )}
+              {errors?.email?.type === "pattern" && (
+                <div className="text-red-500 text-sm">
+                  email address not valid
+                </div>
+              )}
+            </motion.div>
+            <motion.div
+              variants={motionInput}
+              key="subject"
+              className="relative z-0  mb-4"
+            >
+              <input
+                {...register("subject", { required: true })}
+                className="peer block w-full appearance-none border-0 border-b-2 border-sky-900 dark:border-sky-100 bg-transparent py-2.5 px-0 text-sm text-sky-900 dark:text-sky-100 focus:border-sky-600  focus:dark:border-sky-400 focus:text-sky-600 focus:dark:text-sky-400 outline-none focus:ring-0 animate-color duration-200"
+                type="text"
+                placeholder=" "
+              />
+              <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-sky-900 dark:text-sky-100 duration-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-sky-700 dark:peer-focus:text-sky-300">
+                Subject
+              </label>
+              {errors?.subject?.type === "required" && (
+                <div className="text-red-500 text-sm">required</div>
+              )}
+            </motion.div>
+            <motion.div
+              variants={motionInput}
+              key="message"
+              className="relative z-0  mb-4"
+            >
+              <textarea
+                {...register("message", { required: true })}
+                rows={5}
+                className="peer block w-full appearance-none border-0 border-b-2 border-sky-900 dark:border-sky-100 bg-transparent py-2.5 px-0 text-sm text-sky-900 dark:text-sky-100 focus:border-sky-600  focus:dark:border-sky-400 focus:text-sky-600 focus:dark:text-sky-400 outline-none focus:ring-0 animate-color duration-200"
+                placeholder=" "
+              />
+              <label className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-sky-900 dark:text-sky-100 duration-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-sky-700 dark:peer-focus:text-sky-300">
+                Message
+              </label>
+              {errors?.message?.type === "required" && (
+                <div className="text-red-500 text-sm">required</div>
+              )}
+            </motion.div>
+
+            <motion.button
+              variants={motionInput}
+              key="button"
+              type="submit"
+              className="text-left px-6 h-12 bg-sky-100 dark:bg-sky-900 border-2 border-sky-200 dark:border-sky-800 mr-auto mt-2 font-semibold hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100"
+            >
+              Submit
+            </motion.button>
+          </motion.div>
+        </form>
+      </section>
     </>
   );
 }

@@ -21,25 +21,25 @@ function PortfolioItem({
   variants,
 }: PortfolioItemInterface) {
   return (
-    <motion.div
+    <motion.li
       key={slug}
       variants={variants}
       className="flex flex-wrap w-full px-4 py-4 md:w-1/2 xl:w-1/3 2xl:w-1/4 "
     >
-      <div className=" flex flex-col items-stretch w-full min-h-full  p-6 border-4 bg-sky-100 dark:bg-sky-900 border-sky-200 dark:border-sky-800  hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100">
-        <h4 className="text-xl mb-4">{title}</h4>
+      <article className=" flex flex-col items-stretch w-full min-h-full  p-6 border-4 bg-sky-100 dark:bg-sky-900 border-sky-200 dark:border-sky-800  hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100">
+        <h3 className="text-xl mb-4">{title}</h3>
         <p className="text-sky-700 dark:text-sky-300 mb-10">{description}</p>
-        <div className="text-sky-700 dark:text-sky-300 text-sm mb-4">
+        <ul className="text-sky-700 dark:text-sky-300 text-sm mb-4">
           {tags?.data.map((tag: any) => (
-            <span
+            <li
               key={tag.attributes.slug}
               className="inline-block bg-sky-300 dark:bg-sky-700 p-2 mr-2 mb-2"
             >
               {tag.attributes.name}
-            </span>
+            </li>
           ))}
-        </div>
-        <div className="flex flex-row space-x-4 text-sky-700 dark:text-sky-300 ml-auto mt-auto">
+        </ul>
+        <section className="flex flex-row space-x-4 text-sky-700 dark:text-sky-300 ml-auto mt-auto">
           {ghLink ? (
             <a
               href={ghLink}
@@ -64,9 +64,9 @@ function PortfolioItem({
               </div>
             </a>
           ) : null}
-        </div>
-      </div>
-    </motion.div>
+        </section>
+      </article>
+    </motion.li>
   );
 }
 

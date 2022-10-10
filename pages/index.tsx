@@ -2,6 +2,7 @@ import Head from "next/head";
 import { motion } from "framer-motion";
 import Image from "next/future/image";
 import { LayoutContext } from "../context/layoutContext";
+import Link from "next/link";
 
 import { useTheme } from "next-themes";
 
@@ -119,7 +120,7 @@ function Home() {
       <Head>
         <title>Rane Villanueva</title>
       </Head>
-      <div className="container m-auto px-10 w-full flex flex-col lg:flex-row items-center lg:space-x-10">
+      <section className="container m-auto px-10 w-full flex flex-col lg:flex-row items-center lg:space-x-10">
         <motion.div
           initial="inactive"
           animate="active"
@@ -131,15 +132,15 @@ function Home() {
           <Image src={logo} alt="Logo" className="select-none "></Image>
         </motion.div>
         <div className="lg:basis-2/3">
-          <motion.div
+          <motion.p
             initial="inactive"
             animate="active"
             variants={motionDiv[0]}
             className="font-semibold text-sm sm:text-base"
           >
             Hi there! I am
-          </motion.div>
-          <motion.div
+          </motion.p>
+          <motion.h2
             initial="inactive"
             animate="active"
             variants={motionRaneV}
@@ -161,16 +162,16 @@ function Home() {
                 </motion.strong>
               )
             )}
-          </motion.div>
-          <motion.div
+          </motion.h2>
+          <motion.h3
             initial="inactive"
             animate="active"
             variants={motionDiv[2]}
             className="gradient-text text-3xl lg:text-4xl xl:text-5xl font-bold py-2"
           >
             Aspiring Developer.
-          </motion.div>
-          <motion.div
+          </motion.h3>
+          <motion.p
             initial="inactive"
             animate="active"
             variants={motionDiv[3]}
@@ -180,20 +181,27 @@ function Home() {
             at Mapúa University. I am interested to learn the fields of
             Cybersecurity, Web Development, Mobile Development, Data Analysis
             and Visualization, and Artificial Intelligence. I have also created
-            several projects. Check out the portfolio tab for more information
-            about these projects.
-          </motion.div>
-          <motion.button
-            initial="inactive"
-            animate={!showNavBar ? "active" : ""}
-            whileHover="whileHover"
-            variants={motionButtons}
-            className="text-left px-6 h-12 bg-sky-100 dark:bg-sky-900 border-2 border-sky-200 dark:border-sky-800 mr-auto mt-2 font-semibold hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100"
-          >
-            CONTACT ME
-          </motion.button>
+            several projects. Check out the{" "}
+            <Link href="/portfolio">
+              <a className="underline text-sky-500 hover:text-sky-400">
+                portfolio
+              </a>
+            </Link>{" "}
+            tab for more information about these projects.
+          </motion.p>
+          <Link href="/contact" passHref>
+            <motion.button
+              initial="inactive"
+              animate={!showNavBar ? "active" : ""}
+              whileHover="whileHover"
+              variants={motionButtons}
+              className="text-left px-6 h-12 bg-sky-100 dark:bg-sky-900 border-2 border-sky-200 dark:border-sky-800 mr-auto mt-2 font-semibold hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100"
+            >
+              CONTACT ME
+            </motion.button>
+          </Link>
         </div>
-      </div>
+      </section>
     </>
   );
 }

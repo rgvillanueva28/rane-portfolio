@@ -2,28 +2,33 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { MdSchool, MdMail } from "react-icons/md";
-import { FaBuilding, FaRegCalendar } from "react-icons/fa";
+import { FaBuilding, FaRegCalendar, FaIdCard } from "react-icons/fa";
 
 import { useTheme } from "next-themes";
 
 const aboutItems = [
   {
     id: 0,
+    icon: FaIdCard,
+    name: "Rane Gillian Villanueva",
+  },
+  {
+    id: 1,
     icon: MdSchool,
     name: "B.S. Computer Engineering",
   },
   {
-    id: 1,
+    id: 2,
     icon: FaBuilding,
     name: "Mapúa University",
   },
   {
-    id: 2,
+    id: 3,
     icon: FaRegCalendar,
     name: "2018 - present",
   },
   {
-    id: 3,
+    id: 4,
     icon: MdMail,
     name: "rgvillanueva28@gmail.com",
   },
@@ -102,8 +107,8 @@ function about() {
       <Head>
         <title>Rane Villanueva</title>
       </Head>
-      <div className="container m-auto px-10 w-full flex flex-col">
-        <motion.div
+      <section className="container m-auto px-10 w-full flex flex-col">
+        <motion.h2
           initial="inactive"
           animate="active"
           variants={motionRaneV}
@@ -125,7 +130,7 @@ function about() {
               </motion.strong>
             )
           )}
-        </motion.div>
+        </motion.h2>
 
         <motion.ul
           className="w-full space-y-2"
@@ -137,16 +142,16 @@ function about() {
             return (
               <motion.li
                 key={index}
-                className="cursor-pointer hover:text-sky-500"
+                className="cursor-pointer hover:text-sky-500 flex flex-row"
                 variants={motionLi}
               >
                 <item.icon className="inline mr-1 my-auto" />
-                {item.name}
+                <p>{item.name}</p>
               </motion.li>
             );
           })}
         </motion.ul>
-      </div>
+      </section>
     </>
   );
 }

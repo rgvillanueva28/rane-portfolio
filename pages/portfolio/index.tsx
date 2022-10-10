@@ -85,8 +85,8 @@ function Portfolio({ portfolioItems }: any) {
       <Head>
         <title>Rane Villanueva</title>
       </Head>
-      <div className=" py-5 px-10 w-full h-full flex flex-col overflow-y-auto">
-        <motion.div
+      <section className=" py-5 px-10 w-full h-full flex flex-col overflow-y-auto">
+        <motion.h2
           initial="inactive"
           animate="active"
           variants={motionRaneV}
@@ -108,7 +108,7 @@ function Portfolio({ portfolioItems }: any) {
               </motion.strong>
             )
           )}
-        </motion.div>
+        </motion.h2>
 
         <motion.ul
           className="flex flex-row flex-wrap mx-auto"
@@ -131,7 +131,7 @@ function Portfolio({ portfolioItems }: any) {
             );
           })}
         </motion.ul>
-      </div>
+      </section>
     </>
   );
 }
@@ -144,6 +144,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   );
   portfolioItems = await portfolioItems.json();
   portfolioItems = portfolioItems?.data;
+  portfolioItems = portfolioItems?.reverse();
 
   //   console.log(portfolioItems);
 

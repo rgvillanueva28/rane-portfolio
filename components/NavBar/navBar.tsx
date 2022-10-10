@@ -85,7 +85,7 @@ function NavBar() {
   return (
     <AnimatePresence>
       {((isMobileSize && showNavBar) || !isMobileSize) && (
-        <motion.div
+        <motion.aside
           variants={motionDiv}
           initial="initial"
           animate="animate"
@@ -94,7 +94,7 @@ function NavBar() {
             isMobileSize ? " min-h-screen" : ""
           }`}
         >
-          <div className="basis-1/3 " id="">
+          <header className="basis-1/3 " id="">
             <Link href="/">
               <a
                 className=" flex flex-col bg-sky-400 dark:bg-sky-700 border-y-2 border-sky-400 dark:border-sky-800 hover:border-sky-900 dark:hover:border-sky-100 font-semibold hover:font-bold"
@@ -111,16 +111,16 @@ function NavBar() {
                 <h1 className="text-lg text-center">RANE VILLANUEVA</h1>
               </a>
             </Link>
-          </div>
+          </header>
 
-          <div className="text-center flex flex-col justify-center basis-1/3">
+          <nav className="text-center flex flex-col justify-center basis-1/3">
             <NavItems navigationItems={navigationItems} />
-          </div>
-          <div className="basis-1/3 flex flex-col justify-end">
+          </nav>
+          <footer className="basis-1/3 flex flex-col justify-end">
             <NavDarkModeSwitch />
             <NavFooterLinks navigationLinks={navigationLinks} />
-          </div>
-        </motion.div>
+          </footer>
+        </motion.aside>
       )}
     </AnimatePresence>
   );
