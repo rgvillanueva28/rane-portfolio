@@ -12,8 +12,9 @@ import { GetStaticProps } from "next";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function Home({ HomepageDetails }: any) {
-  const { name, description, greeting, title } = HomepageDetails;
+import { HomeInterface } from "../interfaces";
+
+function Home({ name, description, greeting, title }: HomeInterface) {
   const { theme, setTheme } = useTheme();
   const { showNavBar } = useContext(LayoutContext);
 
@@ -205,8 +206,9 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   let HomepageDetails: any | undefined = await fetch(`${API_URL}/api/home`);
-  HomepageDetails = await HomepageDetails.json();
+  HomepageDetails = await HomepageDetails?.json();
   HomepageDetails = HomepageDetails?.data?.attributes;
+  console.log(HomepageDetails);
 
   return {
     props: {

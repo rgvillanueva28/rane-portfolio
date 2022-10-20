@@ -10,7 +10,13 @@ import PortfolioItem from "../../components/Portfolio/portfolioItem";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function Portfolio({ portfolioItems }: any) {
+import { portfolioItemInterface } from "../../interfaces";
+
+interface portfolioPropsInterface {
+  portfolioItems: Array<portfolioItemInterface>;
+}
+
+function Portfolio({ portfolioItems }: portfolioPropsInterface) {
   const { theme, setTheme } = useTheme();
   const { showNavBar } = useContext(LayoutContext);
 
@@ -116,20 +122,17 @@ function Portfolio({ portfolioItems }: any) {
           animate="visible"
           variants={motionDiv}
         >
-          {portfolioItems?.map((item: any, index: any) => {
-            return (
-              <PortfolioItem
-                key={index}
-                slug={item.attributes.slug}
-                title={item.attributes.title}
-                description={item.attributes.description}
-                ghLink={item.attributes.github}
-                link={item.attributes.link}
-                tags={item.attributes.portfolio_techs}
-                variants={motionP}
-              />
-            );
-          })}
+          {portfolioItems?.map(
+            (item: portfolioItemInterface, index: number) => {
+              return (
+                <PortfolioItem
+                  key={index}
+                  attributes={item.attributes}
+                  variants={motionP}
+                />
+              );
+            }
+          )}
         </motion.ul>
       </section>
     </>
@@ -145,8 +148,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   portfolioItems = await portfolioItems.json();
   portfolioItems = portfolioItems?.data;
   portfolioItems = portfolioItems?.reverse();
-
-  //   console.log(portfolioItems);
 
   return {
     props: {

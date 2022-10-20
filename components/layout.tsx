@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { LayoutContext } from "../context/layoutContext";
 import NavBarMobile from "./NavBar/navBarMobile";
 
-interface Props {
+interface LayoutPropsInterface {
   children: React.ReactNode;
 }
 
-function Layout({ children }: Props) {
+function Layout({ children }: LayoutPropsInterface) {
   const { isMobileSize } = useContext(LayoutContext);
   return (
     <div className="transition-all duration-500 flex flex-row bg-sky-100 text-sky-900 dark:bg-sky-900 dark:text-sky-100 min-h-screen">

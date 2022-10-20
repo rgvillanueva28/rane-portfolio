@@ -1,10 +1,4 @@
-import { IconType } from "react-icons";
-
-interface NavigationLinks {
-  name: string;
-  link: string;
-  icon: IconType;
-}
+import { NavigationLinks } from "../../interfaces";
 
 interface NavFooterLinksProps {
   navigationLinks: NavigationLinks[];
@@ -13,7 +7,7 @@ interface NavFooterLinksProps {
 function NavFooterLinks({ navigationLinks }: NavFooterLinksProps) {
   return (
     <div className="flex flex-row justify-center space-x-1 mb-2">
-      {navigationLinks.map((item: NavigationLinks, index: any) => {
+      {navigationLinks.map((item: NavigationLinks, index: number) => {
         return (
           //   <a href={item.link} key={index} className="border-2 rounded-full border-sky-200 hover:border-sky-900 p-1 hover:bg-sky-400">
           <a

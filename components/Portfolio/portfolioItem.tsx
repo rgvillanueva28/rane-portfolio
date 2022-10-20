@@ -1,25 +1,16 @@
 import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { portfolioItemInterface } from "../../interfaces";
 
-interface PortfolioItemInterface {
-  slug: string;
-  title: string;
-  description: string;
-  ghLink: string | null;
-  link: string | null;
-  tags: any | null;
-  variants: any;
-}
-
-function PortfolioItem({
-  slug,
-  title,
-  description,
-  ghLink,
-  link,
-  tags,
-  variants,
-}: PortfolioItemInterface) {
+function PortfolioItem({ attributes, variants }: portfolioItemInterface) {
+  const {
+    slug,
+    title,
+    description,
+    github,
+    link,
+    portfolio_techs: tags,
+  } = attributes;
   return (
     <motion.li
       key={slug}
@@ -40,9 +31,9 @@ function PortfolioItem({
           ))}
         </ul>
         <section className="flex flex-row space-x-4 text-sky-700 dark:text-sky-300 ml-auto mt-auto">
-          {ghLink ? (
+          {github ? (
             <a
-              href={ghLink}
+              href={github}
               target="_blank"
               rel="noreferrer noopener"
               className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-sky-800"

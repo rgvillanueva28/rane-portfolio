@@ -90,7 +90,6 @@ function Contact() {
   } = useForm<CredentialInputs>();
 
   const onSubmit: SubmitHandler<CredentialInputs> = (data) => {
-    // console.log(data);
     location.href = `mailto:rgvillanueva28@gmail.com?subject=${data.subject}&body=${data.message}%0A%0Afrom ${data.name}%0A${data.email}`;
   };
 
