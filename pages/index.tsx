@@ -14,7 +14,12 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 import { HomeInterface } from "../interfaces";
 
-function Home({ name, description, greeting, title }: HomeInterface) {
+interface HomePropsInterface {
+  HomepageDetails: HomeInterface;
+}
+
+function Home({ HomepageDetails }: HomePropsInterface) {
+  const { name, description, greeting, title } = HomepageDetails;
   const { theme, setTheme } = useTheme();
   const { showNavBar } = useContext(LayoutContext);
 
@@ -118,6 +123,7 @@ function Home({ name, description, greeting, title }: HomeInterface) {
     },
   };
 
+  console.log({ name, description, greeting, title });
   const rgv: Array<string> = Array.from(name);
 
   return (
