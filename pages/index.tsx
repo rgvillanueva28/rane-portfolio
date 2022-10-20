@@ -214,7 +214,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   let HomepageDetails: any | undefined = await fetch(`${API_URL}/api/home`);
   HomepageDetails = await HomepageDetails?.json();
   HomepageDetails = HomepageDetails?.data?.attributes;
-  console.log(HomepageDetails);
 
   return {
     props: {
