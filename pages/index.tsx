@@ -8,8 +8,12 @@ import { useTheme } from "next-themes";
 
 import logo from "../public/logo.png";
 import { useContext } from "react";
+import { GetStaticProps } from "next";
 
-function Home() {
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+function Home({ HomepageDetails }: any) {
+  const { name, description, greeting, title } = HomepageDetails;
   const { theme, setTheme } = useTheme();
   const { showNavBar } = useContext(LayoutContext);
 
@@ -113,7 +117,7 @@ function Home() {
     },
   };
 
-  const rgv = Array.from("Rane Villanueva.");
+  const rgv: Array<string> = Array.from(name);
 
   return (
     <>
@@ -138,7 +142,7 @@ function Home() {
             variants={motionDiv[0]}
             className="font-semibold text-sm sm:text-base"
           >
-            Hi there! I am
+            {greeting}
           </motion.p>
           <motion.h2
             initial="inactive"
@@ -169,7 +173,7 @@ function Home() {
             variants={motionDiv[2]}
             className="gradient-text text-3xl lg:text-4xl xl:text-5xl font-bold py-2"
           >
-            Aspiring Developer.
+            {title}
           </motion.h3>
           <motion.p
             initial="inactive"
@@ -177,20 +181,7 @@ function Home() {
             variants={motionDiv[3]}
             className="text-sm sm:text-base text-justify"
           >
-            I am currently a Bachelor of Science in Computer Engineering student
-            at Mapúa University. I am interested to learn the fields of
-            Cybersecurity, Web Development, Mobile Development, Data Analysis
-            and Visualization, and Artificial Intelligence. I have also created
-            several projects. Check out the{" "}
-            <Link href="/portfolio">
-              <a
-                className="underline text-sky-500 hover:text-sky-400"
-                aria-label={`Go to Portfolio`}
-              >
-                portfolio
-              </a>
-            </Link>{" "}
-            tab for more information about these projects.
+            {description}
           </motion.p>
           <Link href="/contact" passHref>
             <motion.button
@@ -211,3 +202,16 @@ function Home() {
 }
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  let HomepageDetails: any | undefined = await fetch(`${API_URL}/api/home`);
+  HomepageDetails = await HomepageDetails.json();
+  HomepageDetails = HomepageDetails?.data?.attributes;
+
+  return {
+    props: {
+      HomepageDetails,
+    },
+    revalidate: 60,
+  };
+};
