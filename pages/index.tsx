@@ -106,7 +106,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
           duration: 1,
           ease: "easeInOut",
           times: [0, 0.5, 1],
-          loop: Infinity,
+          repeat: Infinity,
           repeatDelay: 0.2,
         },
       },
@@ -123,7 +123,6 @@ function Home({ HomepageDetails }: HomePropsInterface) {
     },
   };
 
-  console.log({ name, description, greeting, title });
   const rgv: Array<string> = Array.from(name);
 
   return (
@@ -140,7 +139,13 @@ function Home({ HomepageDetails }: HomePropsInterface) {
           variants={motionImage}
           className="flex cursor-pointer max-w-xs lg:basis-1/3 mb-5 lg:mb-0"
         >
-          <Image src={logo} alt="Logo" className="select-none "></Image>
+          <Image
+            placeholder="blur"
+            priority
+            src={logo}
+            alt="Logo"
+            className="select-none "
+          ></Image>
         </motion.div>
         <div className="lg:basis-2/3">
           <motion.p
@@ -190,7 +195,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
           >
             {description}
           </motion.p>
-          <Link href="/contact" passHref>
+          <Link href="/contact" passHref legacyBehavior>
             <motion.button
               aria-label="Contact"
               initial="inactive"

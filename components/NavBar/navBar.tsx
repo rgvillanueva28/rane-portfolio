@@ -95,22 +95,21 @@ function NavBar() {
           }`}
         >
           <header className="basis-1/3 " id="">
-            <Link href="/">
-              <a
-                aria-label="Go to Homepage"
-                className=" flex flex-col bg-sky-400 dark:bg-sky-700 border-y-2 border-sky-400 dark:border-sky-800 hover:border-sky-900 dark:hover:border-sky-100 font-semibold hover:font-bold"
-                onClick={() => setShowNavBar(false)}
-              >
-                <div className="logo flex justify-center ">
-                  <Image
-                    src={logo}
-                    alt="Logo"
-                    className="max-w-xs lg:max-w-full lg:w-auto"
-                  />
-                </div>
-
-                <h1 className="text-lg text-center">RANE VILLANUEVA</h1>
-              </a>
+            <Link
+              href="/"
+              aria-label="Go to Homepage"
+              className=" flex flex-col bg-sky-400 dark:bg-sky-700 border-y-2 border-sky-400 dark:border-sky-800 hover:border-sky-900 dark:hover:border-sky-100 font-semibold hover:font-bold"
+              onClick={() => setShowNavBar(false)}
+            >
+              <div className="logo flex justify-center ">
+                <Image
+                  placeholder="blur"
+                  src={logo}
+                  alt="Logo"
+                  className="max-w-xs lg:max-w-full lg:w-auto"
+                />
+              </div>
+              <h1 className="text-lg text-center">RANE VILLANUEVA</h1>
             </Link>
           </header>
 
