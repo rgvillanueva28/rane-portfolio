@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/logo.png";
 import NavItems from "./navItems";
