@@ -15,6 +15,7 @@ export interface portfolioItemInterface {
     title: string;
     slug: string;
     description: string;
+    content: string;
     github?: string;
     link?: string;
     portfolio_techs: portfolioTechInterface;

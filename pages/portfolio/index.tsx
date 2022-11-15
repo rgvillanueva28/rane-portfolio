@@ -1,24 +1,22 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
-import { LayoutContext } from "../../context/layoutContext";
 
 import { useTheme } from "next-themes";
 
-import { useContext } from "react";
 import { GetStaticProps } from "next";
 import PortfolioItem from "../../components/Portfolio/portfolioItem";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 import { portfolioItemInterface } from "../../interfaces";
+import Link from "next/link";
 
 interface portfolioPropsInterface {
   portfolioItems: Array<portfolioItemInterface>;
 }
 
 function Portfolio({ portfolioItems }: portfolioPropsInterface) {
-  const { theme, setTheme } = useTheme();
-  const { showNavBar } = useContext(LayoutContext);
+  const { theme } = useTheme();
 
   const motionDiv = {
     hidden: {
@@ -143,8 +141,9 @@ export default Portfolio;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   let portfolioItems: any | undefined = await fetch(
-    `${API_URL}/api/portfolios?populate=%2A`
+    `${API_URL}/api/portfolios?populate=*`
   );
+
   portfolioItems = await portfolioItems.json();
   portfolioItems = portfolioItems?.data;
   portfolioItems = portfolioItems?.reverse();
