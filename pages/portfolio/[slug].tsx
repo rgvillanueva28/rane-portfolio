@@ -8,6 +8,8 @@ import { FaArrowLeft, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import TagItem from "../../components/Portfolio/tagItem";
 import { useContext } from "react";
 import { LayoutContext } from "../../context/layoutContext";
+import { useRouter } from "next/router";
+import DefaultErrorPage from "next/error";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -20,6 +22,19 @@ export default function PortfolioPage({
 }: portfolioPagePropsInterface) {
   const { theme } = useTheme();
   const { isMobileSize } = useContext(LayoutContext);
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <section className="py-5 px-10 w-full h-full flex flex-col overflow-y-auto">
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
+  if (!portfolioItem) {
+    return <DefaultErrorPage statusCode={404} />;
+  }
 
   const motionRaneV = {
     active: {
@@ -107,9 +122,9 @@ export default function PortfolioPage({
           <ul className="text-sky-700 dark:text-sky-300 text-sm mb-4">
             {portfolioItem.attributes.portfolio_techs?.data.map((tag: any) => (
               <TagItem
-                key={tag.attributes.slug}
-                slug={tag.attributes.slug}
-                name={tag.attributes.name}
+                key={tag?.attributes.slug}
+                slug={tag?.attributes.slug}
+                name={tag?.attributes.name}
               />
             ))}
           </ul>
@@ -152,7 +167,7 @@ export default function PortfolioPage({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let portfolioPaths: any | undefined = await fetch(
+  let portfolioPaths: any | null = await fetch(
     `${API_URL}/api/portfolios?&populate=%2A`
   );
   portfolioPaths = await portfolioPaths.json();
@@ -171,7 +186,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  let portfolioItem: any | undefined = await fetch(
+  let portfolioItem: any | null = await fetch(
     `${API_URL}/api/portfolios?populate=%2A&filters[slug][$eqi]=${params?.slug}`
   );
   portfolioItem = await portfolioItem.json();
