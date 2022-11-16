@@ -13,17 +13,13 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface portfolioPagePropsInterface {
   portfolioItem: portfolioItemInterface;
-  content: string;
 }
 
 export default function PortfolioPage({
   portfolioItem,
-  content,
 }: portfolioPagePropsInterface) {
   const { theme } = useTheme();
   const { isMobileSize } = useContext(LayoutContext);
-
-  console.log(content);
 
   const motionDiv = {
     hidden: {
@@ -95,7 +91,7 @@ export default function PortfolioPage({
     <>
       <Head>
         <title>
-          {`${portfolioItem.attributes.title} - Rane Villanueva`} -{" "}
+          {`${portfolioItem.attributes.title} - Rane Villanueva`}
         </title>
       </Head>
       <section className="py-5 px-10 w-full h-full flex flex-col overflow-y-auto">
@@ -131,9 +127,7 @@ export default function PortfolioPage({
             <Link href="/portfolio">Back</Link>
           </div>
         </div>
-        <p className="text-sky-700 dark:text-sky-300 mb-5">
-          {portfolioItem.attributes.description}
-        </p>
+
         <div className="flex flex-row justify-between">
           <ul className="text-sky-700 dark:text-sky-300 text-sm mb-4">
             {portfolioItem.attributes.portfolio_techs?.data.map((tag: any) => (
@@ -171,7 +165,9 @@ export default function PortfolioPage({
             ) : null}
           </section>
         </div>
-
+        <p className="text-sky-700 dark:text-sky-300 mb-5">
+          {portfolioItem.attributes.description}
+        </p>
         <div
           dangerouslySetInnerHTML={{ __html: portfolioItem.attributes.content }}
         />
