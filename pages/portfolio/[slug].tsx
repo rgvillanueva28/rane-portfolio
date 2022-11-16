@@ -4,7 +4,7 @@ import Head from "next/head";
 import { portfolioItemInterface } from "../../interfaces";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { FaArrowLeft, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import TagItem from "../../components/Portfolio/tagItem";
 import { useContext } from "react";
 import { LayoutContext } from "../../context/layoutContext";
@@ -20,34 +20,6 @@ export default function PortfolioPage({
 }: portfolioPagePropsInterface) {
   const { theme } = useTheme();
   const { isMobileSize } = useContext(LayoutContext);
-
-  const motionDiv = {
-    hidden: {
-      opacity: 1,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 1,
-        duration: 2,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const motionP = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-      },
-    },
-  };
 
   const motionRaneV = {
     active: {
@@ -90,9 +62,7 @@ export default function PortfolioPage({
   return (
     <>
       <Head>
-        <title>
-          {`${portfolioItem.attributes.title} - Rane Villanueva`}
-        </title>
+        <title>{`${portfolioItem.attributes.title} - Rane Villanueva`}</title>
       </Head>
       <section className="py-5 px-10 w-full h-full flex flex-col overflow-y-auto">
         <div
@@ -124,7 +94,12 @@ export default function PortfolioPage({
             )}
           </motion.h2>
           <div className={isMobileSize ? "order-first" : ""}>
-            <Link href="/portfolio">Back</Link>
+            <Link
+              href="/portfolio"
+              className="flex flex-row justify-center items-center"
+            >
+              <FaArrowLeft className="mr-2" /> Back
+            </Link>
           </div>
         </div>
 

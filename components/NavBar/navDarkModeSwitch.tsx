@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 
 function NavDarkModeSwitch() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => setMounted(true), []);
 
@@ -29,13 +29,13 @@ function NavDarkModeSwitch() {
       <motion.button
         aria-label="Toggle Dark Mode"
         variants={motionButton}
-        initial={theme === "dark" ? "light" : "dark"}
-        exit={theme === "dark" ? "light" : "dark"}
-        animate={theme}
+        initial={resolvedTheme === "dark" ? "light" : "dark"}
+        exit={resolvedTheme === "dark" ? "light" : "dark"}
+        animate={resolvedTheme}
         className={`mx-auto mb-2 flex text-2xl font-semibold rounded-full p-1`}
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
       >
-        {theme === "light" && (
+        {resolvedTheme === "light" && (
           <motion.div
             className="mr-8"
             initial={{ opacity: 0, x: 50 }}
@@ -45,7 +45,7 @@ function NavDarkModeSwitch() {
             <TbSun size={28} />
           </motion.div>
         )}
-        {theme === "dark" && (
+        {resolvedTheme === "dark" && (
           <motion.div
             className="ml-8"
             initial={{ opacity: 0, x: -50 }}
