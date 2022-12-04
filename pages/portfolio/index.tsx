@@ -146,7 +146,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   portfolioItems = await portfolioItems.json();
   portfolioItems = portfolioItems?.data;
-  portfolioItems = portfolioItems?.reverse();
+  portfolioItems = portfolioItems.sort((a: any, b: any) => {
+    return a?.attributes?.position - b?.attributes?.position
+  })
 
   return {
     props: {
