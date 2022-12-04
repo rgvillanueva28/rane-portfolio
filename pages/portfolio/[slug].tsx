@@ -158,7 +158,7 @@ export default function PortfolioPage({
         <p className="text-sky-700 dark:text-sky-300 mb-5">
           {portfolioItem.attributes.description}
         </p>
-        <div
+        <div className="port-content"
           dangerouslySetInnerHTML={{ __html: portfolioItem.attributes.content }}
         />
       </section>
