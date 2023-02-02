@@ -147,7 +147,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
             className="select-none "
           ></Image>
         </motion.div>
-        <div className="lg:basis-2/3">
+        <div className="lg:basis-2/3 max-w-full">
           <motion.p
             initial="inactive"
             animate="active"
@@ -160,24 +160,27 @@ function Home({ HomepageDetails }: HomePropsInterface) {
             initial="inactive"
             animate="active"
             variants={motionRaneV}
-            className="flex select-none"
+            className="flex select-none "
+            style={{ flexFlow: "wrap" }}
           >
-            {rgv.map((rgv, index) =>
-              rgv === " " ? (
-                <div key={index} className="w-5"></div>
-              ) : (
-                <motion.strong
-                  key={index}
-                  variants={motionLetters}
-                  whileHover="whileHover"
-                  whileTap="whileTap"
-                  animate="animate"
-                  className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-sky-400"
-                >
-                  {rgv}
-                </motion.strong>
-              )
-            )}
+            {name.split(" ").map((word, index) => {
+              return (
+                <motion.div className="select-none flex mr-4" key={index}>
+                  {Array.from(word).map((letter, index) => (
+                    <motion.strong
+                      key={index}
+                      variants={motionLetters}
+                      whileHover="whileHover"
+                      whileTap="whileTap"
+                      animate="animate"
+                      className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-sky-400"
+                    >
+                      {letter}
+                    </motion.strong>
+                  ))}
+                </motion.div>
+              );
+            })}
           </motion.h2>
           <motion.h3
             initial="inactive"
