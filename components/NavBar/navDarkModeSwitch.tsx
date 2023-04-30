@@ -19,9 +19,9 @@ function NavDarkModeSwitch() {
         staggerChildren: 0.1,
         // delay: 0,
       },
-      backgroundColor: "#0c4a6e",
+      backgroundColor: "#00293D",
     },
-    light: { backgroundColor: "#e0f2fe" },
+    light: { backgroundColor: "#EBF8FF" },
   };
 
   return (

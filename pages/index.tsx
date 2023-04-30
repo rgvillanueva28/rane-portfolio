@@ -73,7 +73,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
   const motionLetters = {
     whileHover: {
       y: -10,
-      color: theme === "light" ? "#38bdf8" : "#0284c7",
+      color: theme === "light" ? "#38bdf8" : "#74FF5C",
       transition: {
         y: {
           type: "spring",
@@ -89,7 +89,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
       y: 0,
     },
     animate: {
-      color: theme === "light" ? "#0284c7" : "#38bdf8",
+      color: theme === "light" ? "#0284c7" : "#22E000",
     },
   };
 
@@ -173,7 +173,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
                       whileHover="whileHover"
                       whileTap="whileTap"
                       animate="animate"
-                      className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-sky-400"
+                      className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-brand-blue-400"
                     >
                       {letter}
                     </motion.strong>
@@ -186,7 +186,10 @@ function Home({ HomepageDetails }: HomePropsInterface) {
             initial="inactive"
             animate="active"
             variants={motionDiv[2]}
-            className="gradient-text text-3xl lg:text-4xl xl:text-5xl font-bold py-2"
+            className={`text-3xl lg:text-4xl xl:text-5xl font-bold py-2 ${theme ===
+                "dark"
+                  ? "gradient-text"
+                  : "gradient-text-dark"}`}
           >
             {title}
           </motion.h3>
@@ -205,7 +208,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
               animate={!showNavBar ? "active" : ""}
               whileHover="whileHover"
               variants={motionButtons}
-              className="text-left px-6 h-12 bg-sky-100 dark:bg-sky-900 border-2 border-sky-200 dark:border-sky-800 mr-auto mt-2 font-semibold hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100"
+              className="text-left px-6 h-12  border-2  mr-auto mt-2 font-semibold bg-sky-100 dark:bg-brand-blue-900 border-sky-200 dark:border-brand-blue-800 hover:bg-sky-400 dark:hover:bg-brand-green-600 hover:border-sky-900 dark:hover:border-brand-green-100 dark:hover:text-brand-green-100"
             >
               CONTACT ME
             </motion.button>

@@ -19,10 +19,14 @@ function PortfolioItem({ attributes, variants }: portfolioItemInterface) {
       className="flex flex-wrap w-full px-4 py-4 md:w-1/2 xl:w-1/3 2xl:w-1/4 "
     >
       <Link href={`/portfolio/${slug}`}>
-        <article className=" flex flex-col items-stretch w-full min-h-full  p-6 border-4 bg-sky-100 dark:bg-sky-900 border-sky-200 dark:border-sky-800  hover:bg-sky-400 dark:hover:bg-sky-600 hover:border-sky-900 dark:hover:border-sky-100">
-          <h3 className="text-xl mb-4">{title}</h3>
-          <p className="text-sky-700 dark:text-sky-300 mb-10">{description}</p>
-          <ul className="text-sky-700 dark:text-sky-300 text-sm mb-4">
+        <article className="group flex flex-col items-stretch w-full min-h-full  p-6 border-4 bg-sky-100 dark:bg-brand-blue-900 border-sky-200 dark:border-brand-blue-800  hover:bg-sky-400 dark:hover:bg-brand-green-600 hover:border-sky-900 dark:hover:border-brand-green-100">
+          <h3 className="text-xl mb-4 dark:text-brand-green-500 dark:group-hover:text-brand-green-700">
+            {title}
+          </h3>
+          <p className="text-sky-700 dark:text-brand-green-300 dark:group-hover:text-brand-green-100 mb-10">
+            {description}
+          </p>
+          <ul className="text-sky-700 dark:text-brand-green-300 dark:group-hover:text-brand-green-100 text-sm mb-4">
             {tags?.data.map((tag: any) => (
               <TagItem
                 slug={tag.attributes.slug}

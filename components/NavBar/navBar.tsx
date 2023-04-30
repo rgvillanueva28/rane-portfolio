@@ -90,7 +90,7 @@ function NavBar() {
           initial="initial"
           animate="animate"
           exit="exit"
-          className={`absolute lg:relative z-40 flex flex-col w-full lg:w-72  bg-sky-200 dark:bg-sky-800 justify-between max-h-screen ${
+          className={`absolute lg:relative z-40 flex flex-col w-full lg:w-72  bg-sky-200 dark:bg-brand-blue-800 justify-between max-h-screen ${
             isMobileSize ? " min-h-screen" : ""
           }`}
         >
@@ -98,7 +98,8 @@ function NavBar() {
             <Link
               href="/"
               aria-label="Go to Homepage"
-              className=" flex flex-col bg-sky-400 dark:bg-sky-700 border-y-2 border-sky-400 dark:border-sky-800 hover:border-sky-900 dark:hover:border-sky-100 font-semibold hover:font-bold"
+              className=" flex flex-col bg-sky-400 dark:bg-brand-blue-700 border-y-2 
+              border-t-ky-4 dark:border-t-brand-blue-700 border-sky-400 dark:border-brand-blue-800 hover:border-brand-blue-900 dark:hover:border-brand-blue-100 font-semibold hover:font-bold"
               onClick={() => setShowNavBar(false)}
             >
               <div className="logo flex justify-center ">

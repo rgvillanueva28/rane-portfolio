@@ -7,7 +7,7 @@ html {
 }
 
 .port-content a {
-  @apply text-sky-500 dark:text-sky-500 hover:underline hover:text-sky-600 hover:dark:text-sky-400
+  @apply text-sky-500 dark:text-sky-500 hover:underline hover:text-sky-600 hover:dark:text-sky-400;
 }
 
 .port-content ul {
@@ -15,7 +15,6 @@ html {
 }
 
 .port-content ul li {
-
   list-style-position: inside;
 }
 
@@ -28,6 +27,18 @@ html {
 }
 
 .gradient-text {
+  background: linear-gradient(230deg, #EEFFEB, #39FF14, #0C5200);
+  background-size: 200% 200%;
+
+  -webkit-animation: AnimationName 7s ease infinite;
+  animation: AnimationName 7s ease infinite;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-dark {
   background: linear-gradient(230deg, #bae6fd, #0ea5e9, #0c4a6e);
   background-size: 200% 200%;
 

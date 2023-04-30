@@ -52,7 +52,7 @@ export default function PortfolioPage({
   const motionLetters = {
     whileHover: {
       y: -10,
-      color: theme === "light" ? "#38bdf8" : "#0284c7",
+      color: theme === "light" ? "#38bdf8" : "#74FF5C",
       transition: {
         y: {
           type: "spring",
@@ -68,7 +68,7 @@ export default function PortfolioPage({
       y: 0,
     },
     animate: {
-      color: theme === "light" ? "#0284c7" : "#38bdf8",
+      color: theme === "light" ? "#0284c7" : "#22E000",
     },
   };
 
@@ -101,7 +101,7 @@ export default function PortfolioPage({
                   whileHover="whileHover"
                   whileTap="whileTap"
                   animate="animate"
-                  className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-sky-400"
+                  className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-brand-green-500"
                 >
                   {letter}
                 </motion.strong>
@@ -119,7 +119,7 @@ export default function PortfolioPage({
         </div>
 
         <div className="flex flex-row justify-between">
-          <ul className="text-sky-700 dark:text-sky-300 text-sm mb-4">
+          <ul className="text-sky-700 dark:text-brand-green-300 text-sm mb-4">
             {portfolioItem.attributes.portfolio_techs?.data.map((tag: any) => (
               <TagItem
                 key={tag?.attributes.slug}
@@ -128,15 +128,15 @@ export default function PortfolioPage({
               />
             ))}
           </ul>
-          <section className="flex flex-row space-x-4 text-sky-700 dark:text-sky-300 ">
+          <section className="flex flex-row space-x-4">
             {portfolioItem.attributes.github ? (
               <a
                 href={portfolioItem.attributes.github}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-sky-800"
+                className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-brand-green-600"
               >
-                <div className="absolute z-10 group-hover:bg-sky-900 p-1 group-hover:text-sky-100 dark:group-hover:bg-sky-100 dark:group-hover:text-sky-900">
+                <div className="absolute z-10 group-hover:bg-sky-900 p-1 group-hover:text-sky-100 dark:group-hover:bg-brand-green-100 dark:group-hover:text-brand-green-900">
                   <FaGithub size={28} />
                 </div>
               </a>
@@ -146,19 +146,20 @@ export default function PortfolioPage({
                 href={portfolioItem.attributes.link}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-sky-800"
+                className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-brand-green-600"
               >
-                <div className="absolute z-10 group-hover:bg-sky-900 p-1 group-hover:text-sky-100 dark:group-hover:bg-sky-100 dark:group-hover:text-sky-900">
+                <div className="absolute z-10 group-hover:bg-sky-900 p-1 group-hover:text-sky-100 dark:group-hover:bg-brand-green-100 dark:group-hover:text-brand-green-900">
                   <FaExternalLinkAlt size={28} />
                 </div>
               </a>
             ) : null}
           </section>
         </div>
-        <p className="text-sky-700 dark:text-sky-300 mb-5">
+        <p className="text-sky-700 dark:text-brand-green-300 mb-5">
           {portfolioItem.attributes.description}
         </p>
-        <div className="port-content"
+        <div
+          className="port-content"
           dangerouslySetInnerHTML={{ __html: portfolioItem.attributes.content }}
         />
       </section>

@@ -10,7 +10,7 @@ const aboutItems = [
   {
     id: 0,
     icon: FaIdCard,
-    name: "Rane Gillian Villanueva",
+    name: "Rane Villanueva",
   },
   {
     id: 1,
@@ -25,7 +25,7 @@ const aboutItems = [
   {
     id: 3,
     icon: FaRegCalendar,
-    name: "2018 - present",
+    name: "2018 - 2022",
   },
   {
     id: 4,
@@ -80,7 +80,7 @@ function about() {
   const motionLetters = {
     whileHover: {
       y: -10,
-      color: theme === "light" ? "#38bdf8" : "#0284c7",
+      color: theme === "light" ? "#38bdf8" : "#74FF5C",
       transition: {
         y: {
           type: "spring",
@@ -96,7 +96,7 @@ function about() {
       y: 0,
     },
     animate: {
-      color: theme === "light" ? "#0284c7" : "#38bdf8",
+      color: theme === "light" ? "#0284c7" : "#22E000",
     },
   };
 
@@ -124,7 +124,7 @@ function about() {
                 whileHover="whileHover"
                 whileTap="whileTap"
                 animate="animate"
-                className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-sky-400"
+                className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-brand-green-500"
               >
                 {aboutMe}
               </motion.strong>
@@ -142,7 +142,7 @@ function about() {
             return (
               <motion.li
                 key={index}
-                className="cursor-pointer hover:text-sky-500 flex flex-row"
+                className="cursor-pointer hover:text-brand-green-300 flex flex-row"
                 variants={motionLi}
               >
                 <item.icon className="inline mr-1 my-auto" />

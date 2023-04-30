@@ -62,7 +62,7 @@ function Portfolio({ portfolioItems }: portfolioPropsInterface) {
   const motionLetters = {
     whileHover: {
       y: -10,
-      color: theme === "light" ? "#38bdf8" : "#0284c7",
+      color: theme === "light" ? "#38bdf8" : "#74FF5C",
       transition: {
         y: {
           type: "spring",
@@ -78,7 +78,7 @@ function Portfolio({ portfolioItems }: portfolioPropsInterface) {
       y: 0,
     },
     animate: {
-      color: theme === "light" ? "#0284c7" : "#38bdf8",
+      color: theme === "light" ? "#0284c7" : "#22E000",
     },
   };
 
@@ -106,7 +106,7 @@ function Portfolio({ portfolioItems }: portfolioPropsInterface) {
                 whileHover="whileHover"
                 whileTap="whileTap"
                 animate="animate"
-                className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-sky-400"
+                className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-brand-green-500"
               >
                 {myPortfolio}
               </motion.strong>

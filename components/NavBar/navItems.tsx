@@ -20,7 +20,7 @@ function NavItems({ navigationItems }: NavItemProps) {
           href={item.link}
           key={index}
           aria-label={`Go to ${item.name} Link`}
-          className="py-2 w-full cursor-pointer text-center border-y-2 border-sky-200 hover:bg-sky-400 hover:border-sky-900 dark:border-sky-800 dark:hover:bg-sky-600 dark:hover:border-sky-100 font-semibold"
+          className="py-2 w-full cursor-pointer text-center border-y-2 border-sky-200 hover:bg-sky-400 hover:border-sky-900 dark:border-brand-blue-800 dark:hover:bg-brand-green-600 dark:hover:border-brand-green-100 dark:hover:text-brand-green-100 font-semibold"
           onClick={() => setShowNavBar(false)}
         >
           {item.name}
