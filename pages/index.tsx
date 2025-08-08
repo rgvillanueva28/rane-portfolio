@@ -4,15 +4,19 @@ import Image from "next/image";
 import { LayoutContext } from "../context/layoutContext";
 import Link from "next/link";
 
+import TextType from "../components/ReactBits/TextType";
+
 import { useTheme } from "next-themes";
 
 import logo from "../public/logo.png";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GetStaticProps } from "next";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 import { HomeInterface } from "../interfaces";
+import DecryptedText from "../components/ReactBits/DecyptedText";
+import GradientText from "../components/ReactBits/GradientText";
 
 interface HomePropsInterface {
   HomepageDetails: HomeInterface;
@@ -20,8 +24,19 @@ interface HomePropsInterface {
 
 function Home({ HomepageDetails }: HomePropsInterface) {
   const { name, description, greeting, title } = HomepageDetails;
-  const { theme, setTheme } = useTheme();
   const { showNavBar } = useContext(LayoutContext);
+
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   const motionDiv = [...Array(5)].map((item, index) => {
     return {
@@ -29,7 +44,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
         opacity: 1,
         y: 0,
         transition: {
-          delay: 0.5 * index,
+          delay: 0.5 * index + 0.5,
           type: "spring",
           stiffness: 500,
         },
@@ -61,7 +76,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
       opacity: 1,
       x: 0,
       transition: {
-        delay: 0.5,
+        delay: 1,
         type: "spring",
         stiffness: 1000,
         duration: 0.5,
@@ -99,7 +114,7 @@ function Home({ HomepageDetails }: HomePropsInterface) {
       y: [0, -10, 0],
       transition: {
         opacity: {
-          delay: 2,
+          delay: 2.5,
           duration: 0.25,
         },
         y: {
@@ -148,51 +163,53 @@ function Home({ HomepageDetails }: HomePropsInterface) {
           ></Image>
         </motion.div>
         <div className="lg:basis-2/3 max-w-full">
+          <TextType
+            text={greeting}
+            typingSpeed={50}
+            pauseDuration={1500}
+            showCursor={true}
+            cursorCharacter="_"
+            className="font-semibold text-sm sm:text-base"
+            textColors={["text-brand-green-500 dark:text-brand-blue-500"]}
+          />
+
           <motion.p
             initial="inactive"
             animate="active"
-            variants={motionDiv[0]}
+            variants={motionRaneV}
             className="font-semibold text-sm sm:text-base"
           >
-            {greeting}
+            <DecryptedText
+              text={name}
+              speed={25}
+              sequential={true}
+              useOriginalCharsOnly={false}
+              animateOn="hover"
+              className="text-4xl lg:text-5xl xl:text-6xl text-left  dark:text-brand-green-500 text-brand-blue-500 font-bold"
+              encryptedClassName="text-4xl lg:text-5xl xl:text-6xl text-left  dark:text-brand-green-500 text-brand-blue-500 font-bold"
+            />
           </motion.p>
-          <motion.h2
-            initial="inactive"
-            animate="active"
-            variants={motionRaneV}
-            className="flex select-none "
-            style={{ flexFlow: "wrap" }}
-          >
-            {name.split(" ").map((word, index) => {
-              return (
-                <motion.div className="select-none flex mr-4" key={index}>
-                  {Array.from(word).map((letter, index) => (
-                    <motion.strong
-                      key={index}
-                      variants={motionLetters}
-                      whileHover="whileHover"
-                      whileTap="whileTap"
-                      animate="animate"
-                      className="cursor-pointer text-4xl lg:text-5xl xl:text-6xl text-left  text-sky-600 dark:text-brand-blue-400"
-                    >
-                      {letter}
-                    </motion.strong>
-                  ))}
-                </motion.div>
-              );
-            })}
-          </motion.h2>
-          <motion.h3
+
+          <motion.p
             initial="inactive"
             animate="active"
             variants={motionDiv[2]}
-            className={`text-3xl lg:text-4xl xl:text-5xl font-bold py-2 ${theme ===
-                "dark"
-                  ? "gradient-text"
-                  : "gradient-text-dark"}`}
+            className="text-sm sm:text-base text-justify"
           >
-            {title}
-          </motion.h3>
+            <GradientText
+              colors={
+                theme === "light"
+                  ? ["#bae6fd", "#0ea5e9", "#0c4a6e", "#0ea5e9", "#bae6fd"]
+                  : ["#EEFFEB", "#39FF14", "#0C5200", "#39FF14", "#EEFFEB"]
+              }
+              animationSpeed={10}
+              showBorder={false}
+              className="text-3xl lg:text-4xl xl:text-5xl font-bold py-2 bg-transparent"
+            >
+              {title}
+            </GradientText>
+          </motion.p>
+
           <motion.p
             initial="inactive"
             animate="active"
