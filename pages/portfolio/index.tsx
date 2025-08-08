@@ -12,7 +12,7 @@ import { portfolioItemInterface } from "../../interfaces";
 import Link from "next/link";
 
 interface portfolioPropsInterface {
-  portfolioItems: Array<portfolioItemInterface>;
+  portfolioItems: portfolioItemInterface[];
 }
 
 function Portfolio({ portfolioItems }: portfolioPropsInterface) {
@@ -122,10 +122,17 @@ function Portfolio({ portfolioItems }: portfolioPropsInterface) {
         >
           {portfolioItems?.map(
             (item: portfolioItemInterface, index: number) => {
+              // console.log(item);
               return (
                 <PortfolioItem
                   key={index}
-                  attributes={item.attributes}
+                  title={item.title}
+                  slug={item.slug}
+                  description={item.description}
+                  content={item.content}
+                  github={item.github}
+                  link={item.link}
+                  portfolio_techs={item.portfolio_techs}
                   variants={motionP}
                 />
               );
@@ -143,17 +150,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
   let portfolioItems: any | undefined = await fetch(
     `${API_URL}/api/portfolios?populate=*`
   );
-
+  // console.log(portfolioItems);
   portfolioItems = await portfolioItems.json();
   portfolioItems = portfolioItems?.data;
   portfolioItems = portfolioItems.sort((a: any, b: any) => {
-    return a?.attributes?.position - b?.attributes?.position
-  })
+    return a?.position - b?.position;
+  });
 
   return {
-    props: {
-      portfolioItems,
-    },
+    props: { portfolioItems },
     revalidate: 60,
   };
 };

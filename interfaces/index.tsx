@@ -1,25 +1,19 @@
 import { IconType } from "react-icons";
 
 export interface portfolioTechInterface {
-  data: Array<{
-    id: number;
-    attributes: {
-      name: string;
-      slug: string;
-    };
-  }>;
+  id: number;
+  name: string;
+  slug: string;
 }
 
 export interface portfolioItemInterface {
-  attributes: {
-    title: string;
-    slug: string;
-    description: string;
-    content: string;
-    github?: string;
-    link?: string;
-    portfolio_techs: portfolioTechInterface;
-  };
+  title: string;
+  slug: string;
+  description: string;
+  content: string;
+  github?: string;
+  link?: string;
+  portfolio_techs: portfolioTechInterface[];
   variants?: any;
 }
 
@@ -34,4 +28,12 @@ export interface NavigationLinks {
   name: string;
   link: string;
   icon: IconType;
+}
+
+export interface aboutInterface {
+  alt: string;
+  slug: string;
+  icon: string;
+  content: string;
+  library: "fa" | "md";
 }

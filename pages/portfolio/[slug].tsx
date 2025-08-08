@@ -72,12 +72,12 @@ export default function PortfolioPage({
     },
   };
 
-  const portfolioTitle = Array.from(portfolioItem.attributes.title);
+  const portfolioTitle = Array.from(portfolioItem.title);
 
   return (
     <>
       <Head>
-        <title>{`${portfolioItem.attributes.title} - Rane Villanueva`}</title>
+        <title>{`${portfolioItem.title} - Rane Villanueva`}</title>
       </Head>
       <section className="py-5 px-10 w-full h-full flex flex-col overflow-y-auto">
         <div
@@ -120,18 +120,18 @@ export default function PortfolioPage({
 
         <div className="flex flex-row justify-between">
           <ul className="text-sky-700 dark:text-brand-green-300 text-sm mb-4">
-            {portfolioItem.attributes.portfolio_techs?.data.map((tag: any) => (
+            {portfolioItem.portfolio_techs?.map((tag: any) => (
               <TagItem
-                key={tag?.attributes.slug}
-                slug={tag?.attributes.slug}
-                name={tag?.attributes.name}
+                key={tag?.slug}
+                slug={tag?.slug}
+                name={tag?.name}
               />
             ))}
           </ul>
           <section className="flex flex-row space-x-4">
-            {portfolioItem.attributes.github ? (
+            {portfolioItem.github ? (
               <a
-                href={portfolioItem.attributes.github}
+                href={portfolioItem.github}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-brand-green-600"
@@ -141,9 +141,9 @@ export default function PortfolioPage({
                 </div>
               </a>
             ) : null}
-            {portfolioItem.attributes.link ? (
+            {portfolioItem.link ? (
               <a
-                href={portfolioItem.attributes.link}
+                href={portfolioItem.link}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-brand-green-600"
@@ -156,11 +156,11 @@ export default function PortfolioPage({
           </section>
         </div>
         <p className="text-sky-700 dark:text-brand-green-300 mb-5">
-          {portfolioItem.attributes.description}
+          {portfolioItem.description}
         </p>
         <div
           className="port-content"
-          dangerouslySetInnerHTML={{ __html: portfolioItem.attributes.content }}
+          dangerouslySetInnerHTML={{ __html: portfolioItem.content }}
         />
       </section>
     </>
@@ -178,7 +178,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: portfolioPaths?.map((post: any) => {
       return {
         params: {
-          slug: post.attributes.slug,
+          slug: post.slug,
         },
       };
     }),

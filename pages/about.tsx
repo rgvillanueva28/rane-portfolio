@@ -5,36 +5,45 @@ import { MdSchool, MdMail } from "react-icons/md";
 import { FaBuilding, FaRegCalendar, FaIdCard } from "react-icons/fa";
 
 import { useTheme } from "next-themes";
+import { GetStaticProps } from "next";
+import { aboutInterface } from "../interfaces";
+import DynamicIcon from "../components/About/AboutDynamicIcon";
 
-const aboutItems = [
-  {
-    id: 0,
-    icon: FaIdCard,
-    name: "Rane Villanueva",
-  },
-  {
-    id: 1,
-    icon: MdSchool,
-    name: "B.S. Computer Engineering",
-  },
-  {
-    id: 2,
-    icon: FaBuilding,
-    name: "Mapúa University",
-  },
-  {
-    id: 3,
-    icon: FaRegCalendar,
-    name: "2018 - 2022",
-  },
-  {
-    id: 4,
-    icon: MdMail,
-    name: "rgvillanueva28@gmail.com",
-  },
-];
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-function about() {
+// const aboutItems = [
+//   {
+//     id: 0,
+//     icon: FaIdCard,
+//     name: "Rane Villanueva",
+//   },
+//   {
+//     id: 1,
+//     icon: MdSchool,
+//     name: "B.S. Computer Engineering",
+//   },
+//   {
+//     id: 2,
+//     icon: FaBuilding,
+//     name: "Mapúa University",
+//   },
+//   {
+//     id: 3,
+//     icon: FaRegCalendar,
+//     name: "2018 - 2022",
+//   },
+//   {
+//     id: 4,
+//     icon: MdMail,
+//     name: "rgvillanueva28@gmail.com",
+//   },
+// ];
+
+interface aboutPropsInterface {
+  aboutItems: aboutInterface[];
+}
+
+function about({ aboutItems }: aboutPropsInterface) {
   const { theme, setTheme } = useTheme();
 
   const motionUl = {
@@ -145,8 +154,8 @@ function about() {
                 className="cursor-pointer hover:text-brand-green-300 flex flex-row"
                 variants={motionLi}
               >
-                <item.icon className="inline mr-1 my-auto" />
-                <p>{item.name}</p>
+                <DynamicIcon iconName={item.icon} library={item.library} className="inline mr-1 my-auto" />
+                <p>{item.content}</p>
               </motion.li>
             );
           })}
@@ -157,3 +166,21 @@ function about() {
 }
 
 export default about;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  let aboutItems: any | undefined = await fetch(
+    `${API_URL}/api/abouts?populate=*`
+  );
+  aboutItems = await aboutItems.json();
+  aboutItems = aboutItems?.data;
+  aboutItems = aboutItems.sort((a: any, b: any) => {
+    return a?.position - b?.position;
+  });
+
+  // console.log(aboutItems);
+
+  return {
+    props: { aboutItems },
+    revalidate: 60,
+  };
+};

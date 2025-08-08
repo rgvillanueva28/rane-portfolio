@@ -3,15 +3,15 @@ import Link from "next/link";
 import TagItem from "./tagItem";
 import { portfolioItemInterface } from "../../interfaces";
 
-function PortfolioItem({ attributes, variants }: portfolioItemInterface) {
-  const {
-    slug,
-    title,
-    description,
-    github,
-    link,
-    portfolio_techs: tags,
-  } = attributes;
+function PortfolioItem({
+  slug,
+  title,
+  description,
+  github,
+  link,
+  portfolio_techs: tags,
+  variants,
+}: portfolioItemInterface) {
   return (
     <motion.li
       key={slug}
@@ -27,40 +27,10 @@ function PortfolioItem({ attributes, variants }: portfolioItemInterface) {
             {description}
           </p>
           <ul className="text-sky-700 dark:text-brand-green-300 dark:group-hover:text-brand-green-100 text-sm mb-4">
-            {tags?.data.map((tag: any) => (
-              <TagItem
-                slug={tag.attributes.slug}
-                name={tag.attributes.name}
-                key={tag.attributes.slug}
-              />
+            {tags?.map((tag: any) => (
+              <TagItem slug={tag.slug} name={tag.name} key={tag.slug} />
             ))}
           </ul>
-          {/* <section className="flex flex-row space-x-4 text-sky-700 dark:text-sky-300 ml-auto mt-auto">
-            {github ? (
-              <a
-                href={github}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-sky-800"
-              >
-                <div className="absolute z-10 group-hover:bg-sky-900 p-1 group-hover:text-sky-100 dark:group-hover:bg-sky-100 dark:group-hover:text-sky-900">
-                  <FaGithub size={28} />
-                </div>
-              </a>
-            ) : null}
-            {link ? (
-              <a
-                href={link}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="group flex-none w-9 h-9 relative z-10 hover:before:absolute hover:before:top-1 hover:before:left-1 hover:before:w-full hover:before:h-full hover:before:z-0 hover:before:bg-sky-200 dark:hover:before:bg-sky-800"
-              >
-                <div className="absolute z-10 group-hover:bg-sky-900 p-1 group-hover:text-sky-100 dark:group-hover:bg-sky-100 dark:group-hover:text-sky-900">
-                  <FaExternalLinkAlt size={28} />
-                </div>
-              </a>
-            ) : null}
-          </section> */}
         </article>
       </Link>
     </motion.li>
